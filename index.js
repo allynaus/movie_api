@@ -24,10 +24,10 @@ let topMovies = [
         genre: 'Romance, Drama'   
     },
     {
-        title: 'The Help',
-        director: 'Tate Taylor',
-        cast: 'Viola Davis, Emma Stone',
-        genre: 'Drama, Historical Drama'
+        title: 'No Hard Feelings',
+        director: 'Gene Stupnitsky',
+        cast: 'Jennifer Lawrence, Andrew Barth Feldman',
+        genre: 'Comedy, Drama'
     },
     {
         title: 'Love, Rosie',
@@ -67,14 +67,35 @@ let topMovies = [
     }
 ];
 
-// GET requests
+// Display index page
 app.get('/', (req, res) => {
     res.send('Welcome to myFlix!');
 });
 
+//Get a list of movies 
 app.get('/movies', (req, res) => {
     res.json(topMovies);
 });
+
+//Get titles for list of movies
+app.get('/movies/:title', (req, res) => {
+    res.send({ Title: req.params.title })
+})
+
+//Get Director name, bio, and picture
+app.get('/movies/director/:directorName', (req, res) => {
+    res.json({'Director.Name': req.params.directorName })
+})
+
+//Get Cast members
+app.get('/movies/cast/:castName', (req, res) => {
+    res.json({ 'Cast.Name': req.params.castName })
+})
+
+//Get Genre by Name
+app.get('/movies/genres/:genreName', (req, res) => {
+    res.json({ 'Genre.Name': req.params.genreName })
+})
 
 //error handling middleware
 app.use((err, req,res, next) => {
