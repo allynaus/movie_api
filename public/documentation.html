@@ -5,10 +5,69 @@
         <title>DOCUMENTATION</title>
     </head>
     <body>
-    <h1>Documentation Page</h1>
-    <p>OBJECTIVE: To build the server-side component of a “movies” web application. The web
-        application will provide users with access to information about different
-        movies, directors, and genres. Users will be able to sign up, update their
-        personal information, and create a list of their favorite movies</p>
+        <div class="container" id="title">
+            <h1>
+                My Flix App
+            </h1>
+
+    <p> This web application will provide users with access to information about different
+        movies including their directors, genres, lead roles and short descriptions. Users will be able to sign up, update their
+        personal information, and create a list of their favorite movies!
+    </p>
+       </div>
+       <div class="container">
+            <h2 class="text-left">My Flix API Documentation</h2>
+       </div>
+
+    <!--table-->
+    <div class="container">
+        <table class="table table-striped table-bordered table-responsive{-sm}|{-md}|{-lg}|{-xl}" style="width:100%">
+            <thead>
+                <tr>
+                    <th class="col-2">Request</th>
+                    <th class="col-1">URL</th>
+                    <th class="col-1">HTTP Method</th>
+                    <th class="col-3">Request body data format</th>
+                    <th class="col-5">Response body data format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Get a list of ALL movies</td>
+                    <td>/movies</td>
+                    <td>GET</td>
+                    <td>none</td>
+                    <td>A JSON object holding an arrary with all movies.</td>
+                </tr>
+                <tr>
+                    <td>Get data about a single movie by title</td>
+                    <td>/movies/:Title</td>
+                    <td>GET</td>
+                    <td>none</td>
+                    <td>A JSON object holding data about a single movie, containing description, genre, director, image URL, and cast.</td>
+                </tr>
+                <tr>
+                    <td>Get data about a genre by genre's name</td>
+                    <td>/movies/genre/:genreName</td>
+                    <td>GET</td>
+                    <td>none</td>
+                </tr>
+                <tr>
+                    <td>Get data about a director by director's name</td>
+                    <td>/movies/directors/:directorName</td>
+                    <td>GET</td>
+                    <td>none</td>
+                    <td>A JSON object holding data about a director. ExampleL
+                        <code>
+                            {
+                                "Name":"Tony Kaye",
+                                "Birth":"1951-07-08"
+                            }
+                        </code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     </body>
  </html>
