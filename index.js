@@ -64,6 +64,12 @@ let topMovies = [
         director: 'Tony Kaye',
         cast: 'Edward Norton, Edward Furlong',
         genre: 'Indie Film, Drama'
+    },
+    {
+        title: 'How To Be Single',
+        director: "Christian Ditter",
+        cast: 'Dakota Johnson, Rebel Wilson',
+        genre: "Romance, Comedy"
     }
 ];
 
