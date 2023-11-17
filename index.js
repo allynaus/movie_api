@@ -9,7 +9,7 @@ let topMovies = [
         title: 'Sleeping With Other People',
         director: 'Leslye Headland',
         cast: 'Alison Brie, Jason Sudeikis',
-        genre: 'Romance'
+        genre: 'Romance, Comedy'
     },
     {
         title: 'LaLaLand',
@@ -70,6 +70,12 @@ let topMovies = [
         director: "Christian Ditter",
         cast: 'Dakota Johnson, Rebel Wilson',
         genre: "Romance, Comedy"
+    },
+    {
+        title: 'The Devil Wears Prada',
+        director: 'Aline Brosh McKenna',
+        cast: 'Anne Hathaway, Meryl Streep',
+        genre: 'Comedy, Drama'
     }
 ];
 
