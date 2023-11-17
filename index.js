@@ -6,7 +6,7 @@ app.use(morgan('common'));
 
 let topMovies = [
     {
-        title: 'Sleeping with Other People',
+        title: 'Sleeping With Other People',
         director: 'Leslye Headland',
         cast: 'Alison Brie, Jason Sudeikis',
         genre: 'Romance'
