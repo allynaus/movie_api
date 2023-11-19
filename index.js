@@ -57,7 +57,7 @@ let topMovies = [
         title: 'Little Women',
         director: 'Gillian Armstrong',
         cast: 'Winona Ryder, Christian Bale',
-        genre: 'Drama, Romance'
+        genre: 'Romance, Drama'
     },
     {
         title: 'American History X',
