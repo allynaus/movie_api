@@ -7,9 +7,11 @@ const Users = Models.User;
 mongoose.connect('mongodb://localhost:27017/db', { useNewUrlParser: true, useUnifiedTopology: true});
 
 const express = require('express');
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
 const app = express();
 const morgan = require('morgan');
-const bodyParser = require ('body-parser');
 app.use(express.static('public'));
 app.use(morgan('common'));
 
@@ -118,6 +120,54 @@ app.get('/movies/cast/:castName', (req, res) => {
 app.get('/movies/genres/:genreName', (req, res) => {
     res.json({ 'Genre.Name': req.params.genreName })
 })
+
+
+//Add a user
+{
+    ID: isInteger,
+    Username: String,
+    Password: String,
+    Email: String,
+    Birthday: Date
+}
+app.post('/users', async (req, res) => {
+    await Users.findOne({ Username: req.body.Username})
+
+    .then((user) => {
+        if (user) {
+            return res.status(400).send(req.body.Username + 'already exists');
+        } else {
+            Users
+                .create({
+                    Username: req.body.Username,
+                    Password: req.body.Password,
+                    Email: req.body.Email,
+                    Birthday: req.body.Birthday
+                })
+                .then((user) =>{res.status(201).json(user) })
+                .catch((error) => {
+                    console.error(error);
+                    res.status(500).send('Error: ' + error);
+                })
+        }
+    })
+    .catch((error) => {
+        console.error(error);
+        res.status(500).send('Error ' + error);
+    });
+});
+
+//Get all users
+app.get('/users', async (req, res) => {
+    await Users.find()
+    .then((users) => {
+        res.status(201).json(users);
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err)
+    });
+});
 
 //error handling middleware
 app.use((err, req,res, next) => {
