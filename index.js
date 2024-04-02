@@ -1,3 +1,11 @@
+const mongoose = require('mongoose');
+const Models = require('./models.js');
+
+const Movies = Models.Movie;
+const Users = Models.User;
+
+mongoose.connect('mongodb://localhost:27017/db', { useNewUrlParser: true, useUnifiedTopology: true});
+
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
@@ -48,6 +56,7 @@ let topMovies = [
         genre: 'Action, Thriller'
     },
     {
+
         title: 'Your Place or Mine',
         director: 'Aline Brosh McKenna',
         cast: 'Reese Witherspoon, Ashton Kutcher',
