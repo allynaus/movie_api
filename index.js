@@ -7,10 +7,10 @@ const Users = Models.User;
 mongoose.connect('mongodb://localhost:27017/db', { useNewUrlParser: true, useUnifiedTopology: true});
 
 const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
-const app = express();
 const morgan = require('morgan');
 app.use(express.static('public'));
 app.use(morgan('common'));
