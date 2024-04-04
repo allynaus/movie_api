@@ -8,6 +8,9 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extend: true }));
+let auth = require('./auth') (app);
+const passport = require('passport');
+require('./passport');
 app.use(express.urlencoded({ extend: false }));
 app.use(morgan);
 app.use(express.static('public'));
