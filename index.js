@@ -1,21 +1,15 @@
 const express = require('express'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
-    fs = require('fs'),
-    path = require('path'),
-    uuid = require('uuid'),
     mongoose = require('mongoose'),
     Models = require('./models.js');
 
 const app = express();
-const accesLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'),{
-    flags: 'a',
-});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extend: true }));
 app.use(express.urlencoded({ extend: false }));
-app.use(morgan('combined', { stream: accesLogStream }));
+app.use(morgan);
 app.use(express.static('public'));
 
 const Movies = Models.Movie;
