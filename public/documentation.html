@@ -57,13 +57,33 @@
                     <td>/movies/directors/:directorName</td>
                     <td>GET</td>
                     <td>none</td>
-                    <td>A JSON object holding data about a director. ExampleL
+                    <td>A JSON object holding data about a director. Example:
                         <code>
                             {
                                 "Name":"Tony Kaye",
                                 "Birth":"1951-07-08"
                             }
                         </code>
+                        <tr>
+                            <td>Allow Users to register</td>
+                            <td>/movies/Users/:Username</td>
+                            <td>Used mongoose .post, .add, and .get functions</td>
+                        </tr>
+                        <tr>
+                            <td>Allow users to add a movie to their list of favorites</td>
+                            <td>/users/:Username/movies/:MovieID</td>
+                            <td>Used .post and $push operations in mongoose</td>
+                        </tr>
+                        <tr>
+                            <td>Allow users to remove a movie from their list of favorites</td>
+                            <td>users/:Username/movies/:MovieID</td>
+                            <td>Used mongoose function .delete with if/then statement</td>
+                        </tr>
+                        <tr>
+                            <td>Allow existing users to deregister</td>
+                            <td>/users/:Username</td>
+                            <td>Used mongoose .delete with if/then statement that includes .catch in case of errors</td>
+                        </tr>
                     </td>
                 </tr>
             </tbody>
