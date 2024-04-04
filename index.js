@@ -12,7 +12,7 @@ let auth = require('./auth') (app);
 const passport = require('passport');
 require('./passport');
 app.use(express.urlencoded({ extend: false }));
-app.use(morgan);
+app.use(morgan('common'));
 app.use(express.static('public'));
 
 const Movies = Models.Movie;
