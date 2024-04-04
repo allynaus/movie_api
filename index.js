@@ -111,25 +111,19 @@ app.get('/movies/director/:directorName', (req, res) => {
     res.json({'Director.Name': req.params.directorName })
 })
 
-//Get Cast members
-app.get('/movies/cast/:castName', (req, res) => {
-    res.json({ 'Cast.Name': req.params.castName })
-})
-
 //Get Genre by Name
 app.get('/movies/genres/:genreName', (req, res) => {
     res.json({ 'Genre.Name': req.params.genreName })
 })
 
-
 //Add a user
-{
+/{
     ID: isInteger,
     Username: String,
     Password: String,
     Email: String,
     Birthday: Date
-}
+}*//
 app.post('/users', async (req, res) => {
     await Users.findOne({ Username: req.body.Username})
 
@@ -166,6 +160,72 @@ app.get('/users', async (req, res) => {
     .catch((err) => {
         console.error(err);
         res.status(500).send('Error: ' + err)
+    });
+});
+
+//Get a user by username
+app.get('/users/:Username', async (req, res) => {
+    await Users.findOne({ Username: req.params.Username })
+    .then((user) => {
+        res.json(user);
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+    });
+});
+
+//Update a user's info via username
+app.put('/users/:Username', async(req, res) => {
+    await Users.finOneAndUpdate({ Username: req.params.Username },
+        { $set:
+        {
+            Username: req.body.Username,
+            Password: req.body.Password,
+            Email: req.body.Email,
+            Birthday: req.body.Birthday
+        }
+    },
+    { new: true})
+    .then((updatedUser) => {
+        res.json(updatedUser);
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+    })
+});
+
+//Add a movie to a user's list of favorites
+app.post('/users/:Username/movies/:MovieID', async (req, res) => 
+{
+    await Users.findOneAndUpdate({ Username: req.params.Username }
+        , {
+            $push: { FavoriteMovies: req.params.MovieID }
+        },
+        { new: true })
+        .then((updatedUser) => {
+            res.json(updatedUser);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error: ' + err);
+        });
+});
+
+//Delete a user via username
+app.delete('/users/:Username', async (req, res) => {
+    await Users.findOneAndRemove({ Username: req.params.Username })
+    .then((user) => {
+        if (!user) {
+            res.status(400).send(req.params.Username + ' was not found.');
+        } else {
+            res.status(200).send(req.params.Username + ' was not deleted.');
+        }
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
     });
 });
 
