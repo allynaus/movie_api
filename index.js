@@ -117,13 +117,13 @@ app.get('/movies/genres/:genreName', (req, res) => {
 })
 
 //Add a user
-/{
+/*{
     ID: isInteger,
     Username: String,
     Password: String,
     Email: String,
     Birthday: Date
-}*//
+}*/
 app.post('/users', async (req, res) => {
     await Users.findOne({ Username: req.body.Username})
 
