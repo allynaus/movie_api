@@ -1,25 +1,26 @@
 const express = require('express'),
     bodyParser = require('body-parser'),
-    morgan = require('morgan'),
-    mongoose = require('mongoose'),
-    Models = require('./models.js');
+    morgan = require('morgan');
 
 const app = express();
+
+const mongoose = require('mongoose');
+const Models = require('./models');
 
 const Movies = Models.Movie;
 const Users = Models.User;
 
 mongoose.connect('mongodb://localhost:27017/db', { useNewUrlParser: true, useUnifiedTopology: true });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extend: true }));
-let auth = require('./auth') (app);
-const passport = require('passport');
-require('./passport');
-
 app.use(express.urlencoded({ extend: false }));
 app.use(morgan('common'));
 app.use(express.static('public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extend: true }));
+
+let auth = require('./auth') (app);
+const passport = require('passport');
+require('./passport');
 
 //Read Index Page
 app.get('/', function (req, res, next) {
