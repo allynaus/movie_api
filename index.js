@@ -23,12 +23,12 @@ const passport = require('passport');
 require('./passport');
 
 //Read Index Page
-app.get('/', function (req, res, next) {
+app.get('/', (req, res) => {
     res.send('Welcome to myFlix!');
 });
 
 //Read User page
-app.get('/users', passport.authenticate('jwt', { session: false }), async (req, res) => {
+app.get('/users', async (req, res) => {
         await Users.find()
         .then((users) => {
             res.status(201).json(users);
