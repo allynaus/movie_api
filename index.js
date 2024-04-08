@@ -40,7 +40,8 @@ app.get('/users', passport.authenticate('jwt', { session: false }), async (req, 
     });
 
 //Get a user by username
-app.get('/users', passport.authenticate("jwt", { session: false }), async (req, res) => {
+app.get('/users/:Username', passport.authenticate("jwt", { session: false }), async (req, res) => {
+        // Your code to find user by Username
     await Users.findOne({ Username: req.params.Username })
     .then((user) => {
         res.json(user);
@@ -100,7 +101,7 @@ app.get('/movies/directors/:directorName', passport.authenticate('jwt', { sessio
 });
 
 //Add a user
-app.post('/users', passport.authenticate('jwt', { session: false }), async (req, res) => {
+app.post('/users', async (req, res) => {
     await Users.findOne({ Username: req.body.Username})
 
     .then((user) => {
