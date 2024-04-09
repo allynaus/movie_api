@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extend: true }));
 
 const cors = require('cors');
+const { check, validationResult } = require('express-validator');
 
 let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 
