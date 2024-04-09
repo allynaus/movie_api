@@ -121,8 +121,8 @@ app.get('/movies/Director/:DirectorName', passport.authenticate('jwt', { session
 
 //Add a user
 app.post('/users', async (req, res) => {
-    await Users.findOne({ Username: req.body.Username})
-
+    let hashedPassword = Users.hashPassword(req.body.Password);
+    await Users.findOne({ Username: req.body.Username}) // search to see if a user with the requested username already exists
     .then((user) => {
         if (user) {
             return res.status(400).send(req.body.Username + 'already exists');
