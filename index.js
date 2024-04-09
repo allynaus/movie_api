@@ -84,7 +84,7 @@ app.get('/movies/Genre/:GenreName', passport.authenticate('jwt', { session: fals
     })
     .catch((err) => {
         console.error(err);
-        res.status(500).send('Error: ', + err);
+        res.status(500).send('Error: ' + err);
     });
 });
 
@@ -96,7 +96,7 @@ app.get('/movies/Director/:DirectorName', passport.authenticate('jwt', { session
     })
     .catch((err) => {
         console.error(err);
-        res.status(500).send('Error: ', + err);
+        res.status(500).send('Error: ' + err);
     });
 });
 
