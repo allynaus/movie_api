@@ -18,6 +18,21 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extend: true }));
 
+const cors = require('cors');
+
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
+      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+      return callback(new Error(message ), false);
+    }
+    return callback(null, true);
+  }
+}));
+
 let auth = require('./auth') (app);
 const passport = require('passport');
 require('./passport');
@@ -80,7 +95,11 @@ app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), asyn
 app.get('/movies/Genre/:GenreName', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await Movies.findOne({ 'Genre.Name': req.params.GenreName })
     .then((movie) => {
+     if (movie) {
         res.status(200).json(movie.Genre);
+     } else {
+        res.status(400).send("Genre not found");
+     }
     })
     .catch((err) => {
         console.error(err);
@@ -169,7 +188,7 @@ app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { sess
 
 //Delete a user via username
 app.delete('/users/:Username', passport.authenticate('jwt', { session: false }), async (req, res) => {
-    await Users.findOneAndRemove({ Username: req.params.Username })
+    await Users.findOneAndDelete({ Username: req.params.Username })
     .then((user) => {
         if (!user) {
             res.status(400).send(req.params.Username + ' was not found.');
