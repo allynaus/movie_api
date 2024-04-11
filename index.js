@@ -18,10 +18,11 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extend: true }));
 
+
 const cors = require('cors');
 const { check, validationResult } = require('express-validator');
 
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234', 'https://my-flixmovies-2d2c4ce19e0f.herokuapp.com/'];
 
 app.use(cors({
   origin: (origin, callback) => {
