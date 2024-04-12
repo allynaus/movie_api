@@ -18,3 +18,5 @@ Once logged in, Users can expect to have results from their interactions to be p
 ### Where to View
 MyFlix is hosted online through Heroku and imported via MongoAtlas for a more secure, fast runtime environment that can be easily accessed by any server.
 
+### Summary
+This project was a huge learning experience for me as an aspiring developer. Using multiple layers of unfamiliar software programs to create something from scratch is alltogether challenging, daunting, and fun! I enjoyed every challenege along the way, and I leanred that creating databases is something I take great interest in! I am excited to share my new skills as I am continually on a learning journey in the world of development! 
