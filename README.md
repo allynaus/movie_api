@@ -15,6 +15,9 @@ This complete application consists of a well-designed REST API and architeched d
 ### REST API in use:
 Once logged in, Users can expect to have results from their interactions to be processed and operations performed on the server-side through a series of requests and responses being checked in the database.
 
+### Authorization & Authentication
+I have included password hashing, JWT Passport Authentication, and included validation logic throughout my app to protect User's information and data from being compromised. The only endpoint without the JWT Passport token being "/", due to it needing to be 'READ' by all users.
+
 ### Where to View
 MyFlix is hosted online through Heroku and imported via MongoAtlas for a more secure, fast runtime environment that can be easily accessed by any server.
 
