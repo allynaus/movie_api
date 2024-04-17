@@ -220,7 +220,7 @@ app.delete('/users/:Username', passport.authenticate('jwt', { session: false }),
 
 //Delete a user's favorite movie
 app.delete('/users/:Username/movies/:movieId', passport.authenticate('jwt', { session: false}), async (req, res) => {
-    await Users.finOneAndUpdate(
+    await Users.finOneAndDelete(
         { Username: req.params.Username },
         { $pull: { FavoriteMovies: req.params.MovieId } },
         { new: true },
